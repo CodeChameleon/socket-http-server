@@ -90,12 +90,12 @@ def response_path(path):
 
     """
 
-    resource_path =  Path(".") / ("webroot\\" + path)
+    resource_path =  Path(".") / ("webroot" + path)
     if not resource_path.exists():
         raise NameError("Resource not found")
    
     if resource_path.is_dir():
-        content = ", ".join(resource.name for resource in resource_path.iterdir()).encode("utf8")
+        content = "\r\n".join(resource.name for resource in resource_path.iterdir()).encode("utf8")
         mime_type = b"text/plain"
     else:
         with open(resource_path, 'rb') as f:
